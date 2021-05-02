@@ -37,8 +37,12 @@ module BareBazar
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.middleware.use OliveBranch::Middleware, inflection: 'camel', exclude_response: -> (env) {
+    config.middleware.use OliveBranch::Middleware, inflection: 'camel', exclude_response: lambda { |env|
       !env['PATH_INFO'].match(/(bare_api|oauth)/)
+    }, content_type_check: lambda { |content_type|
+      content_type =~ %r{application/json} || content_type =~ %r{multipart/form-data} || content_type =~ %r{application/vnd\.api\+json}
     }
+
+    Rails.autoloaders.main.ignore(Rails.root.join('app/angular'))
   end
 end

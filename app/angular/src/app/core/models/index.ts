@@ -14,6 +14,49 @@ export interface UserModelResponse {
   }
 }
 
+export interface AdvertModel {
+  id: number
+  title: string
+  description: string
+  price: number
+  titleImage: ImageModel
+}
+
+export interface AdvertModelResponse {
+  id: number
+  attributes: {
+    price: number
+    title: string
+    description: string
+    titleImage: ImageModel
+  }
+}
+
+export interface ImageModel {
+  url: string
+  filename: string
+}
+
+export interface ImageModelResponse {
+  data: {
+    id: number
+    attributes: {
+      url: string
+      filename: string
+    }
+  }
+}
+
+export interface AdvertsModelResponse {
+  data: AdvertModelResponse[]
+  pageInfo: PageInfoModel
+}
+
+export interface PageInfoModel {
+  page: number
+  totalPages: number
+}
+
 export interface UserData {
   id: number
   provider: string

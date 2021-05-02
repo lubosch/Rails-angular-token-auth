@@ -23,13 +23,17 @@ import { NgxPopperjsModule } from 'ngx-popperjs'
   ],
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     NgxPopperjsModule,
     RouterModule,
     FontAwesomeModule,
   ],
   exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FontAwesomeModule,
+
     FullPageComponent,
     ErrorFlashComponent,
     LoginFormComponent,

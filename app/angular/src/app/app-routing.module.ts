@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./users/profile/profile.module').then(m => m.ProfileModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'adverts/new',
+    loadChildren: () => import('./adverts/new-advert/new-advert.module').then(m => m.NewAdvertModule),
+    canActivate: [AuthGuard],
+  },
 ]
 
 @NgModule({

@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" xmlns="http://www.w3.org/1999/html">
+  <app-error-flash [errors]="error"></app-error-flash>
+
+  <div class="grid grid-cols-1 gap-5 mb-5">
+    <label class="block" [class.error]="isInvalid(f.title)">
+      <span class="text-gray-700" i18n>Title</span>
+      <input type="text" class="mt-1 block w-full" i18n-placeholder placeholder="Barely used vegan barefoot …" formControlName="title">
+      <span class="invalid-feedback" i18n>
+        Meaningful title is required
+      </span>
+    </label>
+    <label class="block">
+      <span class="text-gray-700" i18n>Description</span>
+      <textarea class="mt-1 block w-full" formControlName="description"
+                i18n-placeholder placeholder="My kid grew faster than I thought so I am selling them now with 20% discount …"
+                rows="5">
+      </textarea>
+    </label>
+
+    <label class="block" [class.error]="isInvalid(f.image)">
+      <span class="text-gray-700" i18n>Image</span>
+      <span class="relative h-48 border-gray-500 flex justify-center items-center" [class.bg-white]="!f.image.value" [class.border]="!f.image.value">
+        <span class="absolute w-full py-4 px-4" *ngIf="!f.image.value; else imageAttached">
+          <span class="flex flex-col items-center">
+            <fa-icon [icon]="faCloudUpload" size="3x" class="text-gray-400"></fa-icon>
+            <span class="block text-gray-400 font-normal" i18n>Attach you files here</span>
+            <span class="block text-gray-400 font-normal" i18n>or</span>
+            <button type="button" class="text-purple-600 underline" i18n>Browse files</button>
+          </span>
+          <span class="flex justify-between items-center text-gray-400" *ngIf="!f.image.value">
+            <span i18n>Accepted file type: images only</span>
+            <span class="flex items-center" i18n>
+              <fa-icon [icon]="faLock" class="mr-1"></fa-icon>
+              secure
+            </span>
+          </span>
+        </span>
+        <input id="image" type="file" class="h-full w-full opacity-0 cursor-pointer"
+               formControlName="image"
+               (change)="onFileChange($event)">
+        <ng-template #imageAttached>
+          <ng-container *ngIf="filePath && filePath !== ''">
+            <img [src]="filePath" [alt]="form.value.image" class="object-contain h-full w-full">
+          </ng-container>
+        </ng-template>
+      </span>
+      <span class="invalid-feedback" i18n>
+        Image is required
+      </span>
+    </label>
+
+    <div class="block" [class.error]="isInvalid(f.price)">
+      <label for="price" class="text-gray-700" i18n>Price</label>
+      <div class="flex flex-row w-full mt-1">
+        <span class="border border-r-0 border-gray-500 flex items-center bg-gray-300 px-3 font-bold text-grey-darker">€</span>
+        <input id="price"
+               type="number"
+               class="border-l-0 w-full"
+               i18n-placeholder placeholder="23.40" formControlName="price">
+      </div>
+      <div class="invalid-feedback" i18n>
+        Price is required
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <button class="btn btn-primary w-full" type="submit" i18n>
+        Offer
+      </button>
+    </div>
+  </div>
+</form>

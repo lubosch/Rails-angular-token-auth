@@ -19,5 +19,8 @@ Rails.application.routes.draw do
     namespace :users do
       resources :profiles, only: %i[index]
     end
+    namespace :adverts do
+      resources :adverts, only: %i[create show index]
+    end
   end
 end
