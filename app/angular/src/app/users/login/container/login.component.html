@@ -1,0 +1,18 @@
+<app-layout-full-page [responsive]="true">
+  <div class="flex flex-1 items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div>
+        <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900" i18n>
+          Sign in to your account
+        </h1>
+
+        <app-login-form></app-login-form>
+        <div class="prose">
+          <a [routerLink]="['/', 'sign_up']" i18n>
+            Don't have an account? Sign up here.
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout-full-page>

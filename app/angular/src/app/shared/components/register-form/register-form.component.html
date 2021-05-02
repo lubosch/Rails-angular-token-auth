@@ -1,0 +1,45 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <app-error-flash [errors]="error"></app-error-flash>
+
+  <div class="grid grid-cols-1 gap-5 mb-5">
+    <label class="block" [class.error]="isInvalid(f.email)">
+      <span class="text-gray-700" i18n>Email address</span>
+      <input type="email" class="mt-1 block w-full" placeholder="john@example.com" formControlName="email">
+      <div class="invalid-feedback" i18n>
+        Please provide valid email address
+      </div>
+    </label>
+    <label class="block" [class.error]="isInvalid(f.password)">
+      <span class="text-gray-700" i18n>Password</span>
+      <input type="password" class="mt-1 block w-full" placeholder="********" formControlName="password">
+      <div class="invalid-feedback" i18n>
+        Password must have at least 6 characters
+      </div>
+    </label>
+    <div class="block">
+      <div class="mt-2">
+        <label class="inline-flex items-center">
+          <input type="checkbox" formControlName="marketingAgreement">
+          <span class="ml-2" i18n>I agree with marketing data storing and processing</span>
+        </label>
+        <div [class.error]="isInvalid(f.privacyPolicyAgreement)">
+          <label class="inline-flex items-center">
+            <input type="checkbox" formControlName="privacyPolicyAgreement">
+            <span class="ml-2" i18n>I accept the Terms of Service</span>
+          </label>
+          <div class="invalid-feedback" i18n>
+            You must accept Terms of Services
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+      <button class="btn btn-primary" type="submit" i18n>
+        Sign In
+      </button>
+      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#" i18n>
+        Forgot password?
+      </a>
+    </div>
+  </div>
+</form>

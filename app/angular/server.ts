@@ -29,7 +29,7 @@ export function app(): express.Express {
 
   server.use('^/bare_api',
     createProxyMiddleware({
-      target: process.env.BACKEND_URL || 'http://lvh.me:3000', changeOrigin: true, logLevel: 'debug',
+      target: process.env.BACKEND_URL || 'http://localhost:3000', changeOrigin: true, logLevel: 'debug',
     }))
 
   // Example Express Rest API endpoints

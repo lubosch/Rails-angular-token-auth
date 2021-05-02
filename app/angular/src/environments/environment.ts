@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'http://localhost:4200',
+  authClientId: 'mpWHIQRJXLNEUaWJjAha7t_IMyvbRijBFJrYkn9OzlA',
+  authClientSecret: 'k3f6pI96a6MMF6n_FIzQhk3fg5K1P0Nq3HGvUK5Uxsc',
 }
 
 /*

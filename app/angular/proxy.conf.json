@@ -1,14 +1,22 @@
 {
   "/bare_api": {
-    "target": "http://lvh.me:3000/bare_api",
+    "target": "http://localhost:3000/bare_api",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
       "^/bare_api": ""
     }
   },
+  "/oauth": {
+    "target": "http://localhost:3000/oauth",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/oauth": ""
+    }
+  },
   "/uploads": {
-    "target": "http://lvh.me:3000/uploads",
+    "target": "http://localhost:3000/uploads",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
@@ -16,7 +24,7 @@
     }
   },
   "/cable": {
-    "target": "ws://lvh.me:3000/cable",
+    "target": "ws://localhost:3000/cable",
     "secure": false,
     "ws": true,
     "pathRewrite": {

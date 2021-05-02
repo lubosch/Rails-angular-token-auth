@@ -41,6 +41,15 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "sk": {
+            "translation": "src/i18n/messages.sk.xlf",
+            "baseHref": "/sk"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -87,6 +96,10 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "sk": {
+              "aot": true,
+              "outputPath": "dist/angular-sk"
             }
           }
         },
@@ -100,13 +113,17 @@
           "configurations": {
             "production": {
               "browserTarget": "angular:build:production"
+            },
+            "sk": {
+              "browserTarget": "angular:build:sk"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular:build"
+            "browserTarget": "angular:build",
+            "outputPath": "src/i18n"
           }
         },
         "test": {
@@ -133,7 +150,7 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          },
+          }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
@@ -192,6 +209,21 @@
           },
           "configurations": {
             "production": {}
+          }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFormat": "xlf",
+              "srcDir": "src/i18n",
+              "genDir": "src/i18n",
+              "defaultLanguage": "en",
+              "languages": [
+                "en",
+                "sk"
+              ]
+            }
           }
         }
       }

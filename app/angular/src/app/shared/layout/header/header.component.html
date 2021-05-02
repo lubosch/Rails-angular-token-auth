@@ -1,0 +1,59 @@
+<nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-purple-700">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div class="w-full relative flex justify-between md:w-auto  px-4 md:static md:block md:justify-start">
+      <a class="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" [routerLink]="['/']" i18n>
+        Bare bazaar
+      </a>
+      <button
+        class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
+        type="button" (click)="toggleNavbar()">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
+    </div>
+    <div [ngClass]="{'hidden': !showMenu, 'flex': showMenu}" class="md:flex md:flex-grow items-center">
+      <ul class="flex flex-col md:flex-row list-none ml-auto">
+        <ng-container *ngIf="currentUser$ | async as currentUser; else notLogged">
+          <div class="md:hidden">
+            <li class="nav-item">
+              <a class="link" [routerLink]="['/', 'profile']" i18n>
+                Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <button class="link" type="button" (click)="logout()" i18n>
+                Sign out
+              </button>
+            </li>
+          </div>
+          <li class="nav-item hidden md:block">
+            <button class="link" type="button"
+                    [popper]="dropDown" [popperTrigger]='triggerClick' [popperPlacement]="placementBottom" popperApplyArrowClass="hidden">
+              {{currentUser.email}}
+              <fa-icon [icon]="faCaret" class="ml-2"></fa-icon>
+            </button>
+          </li>
+          <popper-content class="popper-content" #dropDown>
+            <a [routerLink]="['/', 'profile']" i18n>
+              Profile
+            </a>
+            <button type="button" (click)="logout()" i18n>
+              Sign out
+            </button>
+          </popper-content>
+        </ng-container>
+        <ng-template #notLogged>
+          <li class="nav-item">
+            <a class="link" [routerLink]="['/', 'login']" i18n>
+              Log in
+            </a>
+          </li>
+        </ng-template>
+        <li class="nav-item">
+          <a class="btn" [routerLink]="['/', 'items', 'new']" i18n>
+            Offer barefoot
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

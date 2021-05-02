@@ -1,0 +1,27 @@
+li.nav-item {
+  a, button {
+    @apply mx-3 px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white
+  }
+
+  a.link:hover, button.link:hover {
+    @apply opacity-75
+  }
+
+  button.link:focus {
+    @apply outline-none
+  }
+
+  a.btn {
+    @apply bg-transparent hover:bg-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500;
+    @apply hover:border-transparent rounded;
+  }
+}
+
+.popper-content {
+  a, button {
+    @apply py-2 px-6 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 text-left;
+    &:hover {
+      @apply bg-gray-200;
+    }
+  }
+}
