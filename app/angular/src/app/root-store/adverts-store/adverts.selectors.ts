@@ -1,9 +1,9 @@
-import { AdvertModel } from '@core/models'
 import {
   createFeatureSelector,
   createSelector,
   MemoizedSelector,
 } from '@ngrx/store'
+import { Advert } from 'src/generated/graphql'
 
 import { State } from './adverts.state'
 
@@ -13,7 +13,7 @@ const getIsLoading = (state: State): boolean => state.isLoading && !state.isLoad
 
 const getIsLoaded = (state: State): boolean => state.isLoaded
 
-const getAdverts = (state: State): AdvertModel[] => state.adverts
+const getAdverts = (state: State): Advert[] => state.adverts
 
 
 export const selectAdvertsState: MemoizedSelector<unknown, State> =
@@ -30,5 +30,5 @@ export const selectAdvertsIsLoading: MemoizedSelector<unknown, boolean> =
 export const selectAdvertsIsLoaded: MemoizedSelector<unknown, boolean> =
   createSelector(selectAdvertsState, getIsLoaded)
 
-export const selectAdverts: MemoizedSelector<unknown, AdvertModel[]> =
+export const selectAdverts: MemoizedSelector<unknown, Advert[]> =
   createSelector(selectAdvertsState, getAdverts)

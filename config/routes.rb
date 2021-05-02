@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post '/graphql', to: 'graphql#execute'
+
   use_doorkeeper do
     skip_controllers :authorizations, :applications, :authorized_applications
   end

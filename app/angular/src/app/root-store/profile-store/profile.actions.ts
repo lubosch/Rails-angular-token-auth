@@ -1,5 +1,5 @@
+import { Profile } from '@graphql/graphql'
 import { createAction, props } from '@ngrx/store'
-import { UserModel } from '@core/models'
 
 export enum ActionTypes {
   profileRequest = '[Profile] Request',
@@ -25,14 +25,14 @@ export const profileFailureAction = createAction(
 
 export const profileSuccessAction = createAction(
   ActionTypes.profileSuccess,
-  props<{ user: UserModel }>(),
+  props<{ user: Profile }>(),
 )
 
 export const profileLoginSuccessAction = createAction(ActionTypes.profileLoginSuccess)
 
 export const profileUpdateSuccessAction = createAction(
   ActionTypes.profileUpdateSuccess,
-  props<{ user: UserModel }>(),
+  props<{ user: Profile }>(),
 )
 
 export const profileLogoutSuccessAction = createAction(ActionTypes.profileLogoutSuccess)

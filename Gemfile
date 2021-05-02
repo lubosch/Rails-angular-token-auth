@@ -37,6 +37,8 @@ gem 'olive_branch'
 # gem 'rack-cors
 
 gem 'annotate'
+gem 'graphql'
+
 gem 'jsonapi-rails'
 gem 'jsonapi-serializer'
 

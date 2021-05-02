@@ -14,7 +14,9 @@ const reducer = createReducer(
   on(AdvertsActions.advertsSuccessAction, (state, payload) => (
     {
       ...state,
-      adverts: payload.adverts,
+      adverts: payload.adverts.nodes,
+      pageInfo: payload.adverts.pageInfo,
+      totalCount: payload.adverts.totalCount,
       error: null,
       isLoading: false,
       isLoaded: true,

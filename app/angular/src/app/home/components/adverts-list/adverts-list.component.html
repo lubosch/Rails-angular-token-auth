@@ -1,2 +1,6 @@
-<app-advert-preview [advert]="advert" *ngFor="let advert of (adverts$ | async); trackBy: trackByFn">
-</app-advert-preview>
+<div class="flex gap-8 flex-wrap">
+  <div *ngFor="let advert of (adverts$ | async); trackBy: trackByFn" class="preview-item">
+    <app-advert-preview [advert]="advert">
+    </app-advert-preview>
+  </div>
+</div>

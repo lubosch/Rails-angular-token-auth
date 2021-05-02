@@ -1,14 +1,16 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg">
-  <img class="w-full" [src]="advert.titleImage.url" [alt]="advert.titleImage.filename">
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">{{advert.title}}</div>
-    <p class="text-gray-700 text-base">
-      {{advert.description}}
-    </p>
-  </div>
-  <div class="px-6 pt-4 pb-2">
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+<div class="w-full h-full rounded overflow-hidden shadow-lg flex flex-col">
+  <img class="w-full card-header-img object-scale-down" [src]="advert.titleImage.url" [alt]="advert.titleImage.filename">
+  <div class="flex justify-between align-between flex-col flex-1">
+    <div class="px-6 pt-4">
+      <a [routerLink]="['/', 'advert', advert.id]" class="font-bold text-xl mb-2 line-clam-1">{{advert.title}}</a>
+      <p class="text-gray-700 text-base line-clamp-3 description" *ngIf="advert.description">
+        {{advert.description}}
+      </p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+    </div>
   </div>
 </div>

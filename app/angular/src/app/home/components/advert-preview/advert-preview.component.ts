@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { AdvertModel } from '@core/models'
+import { Advert } from 'src/generated/graphql'
 
 @Component({
   selector: 'app-advert-preview',
@@ -7,7 +7,7 @@ import { AdvertModel } from '@core/models'
   templateUrl: './advert-preview.component.html',
 })
 export class AdvertPreviewComponent {
-  @Input() advert: AdvertModel
+  @Input() advert: Advert
 
   constructor() {
   }

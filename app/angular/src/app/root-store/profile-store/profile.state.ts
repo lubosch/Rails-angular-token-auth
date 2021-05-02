@@ -1,7 +1,7 @@
-import { UserModel } from '@core/models'
+import { Profile } from '@graphql/graphql'
 
 export interface State {
-  user: UserModel
+  user: Profile
   isLoading: boolean
   isLoaded: boolean
   login: boolean

@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Profile, ProfileGQL } from '@graphql/graphql'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-
-import { environment } from '@environments/environment'
-import { UserModel, UserModelResponse } from '@core/models'
-
-const profileUrl = `${environment.apiUrl}/bare_api/users/profiles.json`
 
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private profileGQL: ProfileGQL) {
   }
 
-  profile(): Observable<UserModel> {
-    return this.http
-      .get(profileUrl).pipe(
-        map((response: { data: UserModelResponse }) => ({
-          id: response.data.id,
-          ...response.data.attributes,
-        })),
+  profile(): Observable<Profile> {
+    return this.profileGQL.fetch({})
+      .pipe(
+        map((result) => result.data.users.profile),
       )
   }
 }

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-
 import { environment } from '@environments/environment'
-import { AdvertModel, AdvertModelResponse, AdvertsModelResponse } from '@core/models'
+import { AdvertModel, AdvertModelResponse } from '@core/models'
+import { AdvertConnection, ListAdvertsGQL } from 'src/generated/graphql'
 
 const advertsUrl = `${environment.apiUrl}/bare_api/adverts/adverts.json`
 const advertUrl = (id) => `${environment.apiUrl}/bare_api/adverts/adverts/${id}.json`
@@ -12,7 +12,8 @@ const advertUrl = (id) => `${environment.apiUrl}/bare_api/adverts/adverts/${id}.
 
 @Injectable({ providedIn: 'root' })
 export class AdvertsService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private listAdvertsGQL: ListAdvertsGQL) {
   }
 
   create(data): Observable<AdvertModel> {
@@ -35,15 +36,9 @@ export class AdvertsService {
       )
   }
 
-  list(): Observable<AdvertModel[]> {
-    return this.http
-      .get(advertsUrl).pipe(
-        map((response: AdvertsModelResponse) => (
-          response.data.map((advertResponse: AdvertModelResponse) => ({
-            id: advertResponse.id,
-            ...advertResponse.attributes,
-          }))
-        )),
-      )
+  list(): Observable<AdvertConnection> {
+    return this.listAdvertsGQL.watch().valueChanges.pipe(
+      map((result) => result.data.adverts.list as AdvertConnection),
+    )
   }
 }

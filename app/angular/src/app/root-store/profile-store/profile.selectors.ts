@@ -1,4 +1,4 @@
-import { UserModel } from '@core/models'
+import { Profile } from '@graphql/graphql'
 import {
   createFeatureSelector,
   createSelector,
@@ -13,7 +13,7 @@ const getIsLoading = (state: State): boolean => state.isLoading && !state.isLoad
 
 const getIsLoaded = (state: State): boolean => state.isLoaded
 
-const getUser = (state: State): UserModel => state.user
+const getUser = (state: State): Profile => state.user
 
 const getUserChanged = (state: State): string => {
   if (state.login) return `1`
@@ -35,7 +35,7 @@ export const selectProfileIsLoading: MemoizedSelector<unknown, boolean> =
 export const selectProfileIsLoaded: MemoizedSelector<unknown, boolean> =
   createSelector(selectProfileState, getIsLoaded)
 
-export const selectProfile: MemoizedSelector<unknown, UserModel> =
+export const selectProfile: MemoizedSelector<unknown, Profile> =
   createSelector(selectProfileState, getUser)
 
 export const selectProfileChange: MemoizedSelector<unknown, string> =

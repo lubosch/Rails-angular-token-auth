@@ -1,0 +1,20 @@
+query listAdverts {
+  adverts {
+    list {
+      nodes {
+        id
+        title
+        description
+        titleImage {
+          id
+          filename
+          url
+        }
+      }
+      pageInfo {
+        endCursor
+      }
+      totalCount
+    }
+  }
+}

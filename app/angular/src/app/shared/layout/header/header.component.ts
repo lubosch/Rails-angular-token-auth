@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { UserModel } from '@core/models'
 import { AuthenticationService } from '@core/services/authentication.service'
 import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { Profile } from '@graphql/graphql'
 import { Store } from '@ngrx/store'
 import { RootStoreState } from '@store/index'
 import { ProfileStoreActions, ProfileStoreSelectors } from '@store/profile-store'
+import { Apollo } from 'apollo-angular'
 import { NgxPopperjsPlacements, NgxPopperjsTriggers } from 'ngx-popperjs'
 import { Observable } from 'rxjs'
 
@@ -22,10 +23,11 @@ export class HeaderComponent implements OnInit {
   placementBottom = NgxPopperjsPlacements.BOTTOM
   triggerClick = NgxPopperjsTriggers.click
 
-  currentUser$: Observable<UserModel> = this.store.select(ProfileStoreSelectors.selectProfile)
+  currentUser$: Observable<Profile> = this.store.select(ProfileStoreSelectors.selectProfile)
 
   constructor(private store: Store<RootStoreState.State>,
               private router: Router,
+              private apollo: Apollo,
               private authenticationService: AuthenticationService) {
   }
 
@@ -42,10 +44,13 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authenticationService.logout().subscribe(
       () => {
-        this.store.dispatch(ProfileStoreActions.profileReloadAction())
-        this.store.dispatch(ProfileStoreActions.profileLogoutSuccessAction())
-
-        this.router.navigate(['/login'])
+        this.apollo.client.clearStore().then(
+          () => {
+            this.store.dispatch(ProfileStoreActions.profileReloadAction())
+            this.store.dispatch(ProfileStoreActions.profileLogoutSuccessAction())
+            this.router.navigate(['/login'])
+          },
+        )
       },
     )
   }

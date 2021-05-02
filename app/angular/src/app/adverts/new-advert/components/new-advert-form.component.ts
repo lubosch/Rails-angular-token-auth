@@ -68,7 +68,6 @@ export class NewAdvertFormComponent {
 
     this.advertsService.create(data).subscribe(
       (advert: AdvertModel) => {
-        debugger;
         this.router.navigate(['/', 'advert', advert.id])
       },
       (error) => this.error = error,

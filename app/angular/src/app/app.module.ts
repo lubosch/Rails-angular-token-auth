@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -10,7 +10,8 @@ import { JwtInterceptor } from '@app/helpers/jwt.interceptor'
 import { CoreModule } from '@core/core.module'
 import { AuthenticationService } from '@core/services/authentication.service'
 import { RootStoreModule } from '@store/root-store.module'
-import { NgxPopperjsModule, NgxPopperjsPlacements } from 'ngx-popperjs'
+import { NgxPopperjsModule, NgxPopperjsPlacements } from 'ngx-popperjs';
+import { GraphQLModule } from './graphql.module'
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { NgxPopperjsModule, NgxPopperjsPlacements } from 'ngx-popperjs'
     AppRoutingModule,
     NgxPopperjsModule.forRoot({ placement: NgxPopperjsPlacements.BOTTOM }),
     BrowserAnimationsModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },

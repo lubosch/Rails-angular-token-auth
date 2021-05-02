@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -23,6 +22,9 @@
       "@core/*": [
         "src/app/core/*"
       ],
+      "@graphql/*": [
+        "src/generated/*"
+      ],
       "@store/*": [
         "src/app/root-store/*"
       ],
@@ -36,8 +38,10 @@
     "module": "es2020",
     "lib": [
       "es2018",
-      "dom"
-    ]
+      "dom",
+      "esnext.asynciterable"
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

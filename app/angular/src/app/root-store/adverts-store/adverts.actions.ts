@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store'
-import { AdvertModel } from '@core/models'
+import { AdvertConnection } from 'src/generated/graphql'
 
 export enum ActionTypes {
   advertsRequest = '[Adverts] Request',
@@ -16,6 +16,6 @@ export const advertsFailureAction = createAction(
 
 export const advertsSuccessAction = createAction(
   ActionTypes.advertsSuccess,
-  props<{ adverts: AdvertModel[] }>(),
+  props<{ adverts: AdvertConnection }>(),
 )
 

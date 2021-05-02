@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core'
-import { UserModel } from '@core/models'
 import { UsersService } from '@core/services/users.service'
+import { Profile } from '@graphql/graphql'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable, of } from 'rxjs'
 import { catchError, map, switchMap, debounceTime, take } from 'rxjs/operators'
-import { ActionTypes } from './profile.actions'
+import { ActionTypes, profileReloadAction, profileRequestAction } from './profile.actions'
 
 @Injectable()
 export class ProfileStoreEffects {
   profileRequestEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(ActionTypes.profileRequest),
+    ofType(profileRequestAction),
     debounceTime(300),
     switchMap(() =>
       this.dataService.profile().pipe(
-        map((user: UserModel) => ({ type: ActionTypes.profileSuccess, user })),
+        map((user: Profile) => ({ type: ActionTypes.profileSuccess, user })),
         catchError(error => of({ type: ActionTypes.profileFailure, error })),
       ),
     ),
@@ -22,11 +22,11 @@ export class ProfileStoreEffects {
   ))
 
   profileReloadEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(ActionTypes.profileReload),
+    ofType(profileReloadAction),
     debounceTime(300),
     switchMap(() =>
       this.dataService.profile().pipe(
-        map((user: UserModel) => ({ type: ActionTypes.profileSuccess, user })),
+        map((user: Profile) => ({ type: ActionTypes.profileSuccess, user })),
         catchError(error => of({ type: ActionTypes.profileFailure, error })),
       ),
     ),

@@ -7,6 +7,14 @@
       "^/bare_api": ""
     }
   },
+  "/graphql": {
+    "target": "http://localhost:3000/graphql",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/graphql": ""
+    }
+  },
   "/oauth": {
     "target": "http://localhost:3000/oauth",
     "secure": true,
@@ -21,6 +29,14 @@
     "changeOrigin": true,
     "pathRewrite": {
       "^/uploads": ""
+    }
+  },
+  "/rails": {
+    "target": "http://localhost:3000/rails",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/rails": ""
     }
   },
   "/cable": {
